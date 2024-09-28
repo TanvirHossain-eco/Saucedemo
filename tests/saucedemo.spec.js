@@ -9,6 +9,7 @@ test.beforeAll(async () => {
     const context = await browser.newContext();
     page = await context.newPage();
     await page.goto('/');
+    
   });
   
 test.afterAll(async () => {
@@ -23,8 +24,9 @@ test('Test Case 1: Login', async () => {
     await page.fill('#password', process.env.SAUCEDEMO_PASSWORD); //secret_sauce
     // await page.fill('#user-name', 'standard_user'); //standard_user
     // await page.fill('#password', 'secret_sauce'); //secret_sauce
+    // const LoginPage = await page.screenshot();
     await page.waitForTimeout(3000);
-    expect(await page.screenshot()).toMatchSnapshot('login-page.png'); // Login Page Visual Testing
+    expect(page).toHaveScreenshot('login-page.png'); // Login Page Visual Testing
     await page.click('#login-button');
     await page.waitForTimeout(3000);
     
@@ -37,7 +39,7 @@ test('Test Case 2: Filter Sorting Order Z-A', async () => {
     const productNames = await page.locator('.inventory_item_name').allTextContents();
     const sortedProductNames = [...productNames].sort().reverse();
     expect(productNames).toEqual(sortedProductNames); // Verify Z-A sorting
-    expect(await page.screenshot()).toMatchSnapshot('z-a_filtering.png'); // Z-A Filtering Visual Testing
+    expect(page).toHaveScreenshot('z-a_filtering.png'); // Z-A Filtering Visual Testing
     await page.waitForTimeout(3000);
     // Continue with the rest of the steps...
 });
@@ -49,7 +51,7 @@ test('Test Case 3: Filter Price Order High-Low', async () => {
     const cleanedPrices = prices.map(price => parseFloat(price.replace('$', ''))); // removed the $ sign only
     const sortedPrices = prices.map(p => parseFloat(p.replace('$', ''))).sort((a, b) => b - a);
     expect(cleanedPrices).toEqual(sortedPrices); // Verify High-Low price sorting
-    expect(await page.screenshot()).toMatchSnapshot('hilo_filtering.png'); // Hilo Filtering Visual Testing
+    expect(page).toHaveScreenshot('hilo_filtering.png'); // Hilo Filtering Visual Testing
     await page.waitForTimeout(3000);
     // Continue with the rest of the steps...
 });
@@ -63,7 +65,7 @@ test('Test Case 4: Add Multiple Items to the cart', async () => {
     await page.locator('.shopping_cart_link').click();
     const cartItems = await page.locator('.cart_item').count();
     expect(cartItems).toBe(2); // Verify that 2 items are in the cart
-    expect(await page.screenshot()).toMatchSnapshot('cart-page.png'); // Cart Page Visual Testing
+    expect(page).toHaveScreenshot('cart-page.png'); // Cart Page Visual Testing
     await page.waitForTimeout(3000);    
     // Continue with the rest of the steps...
 });
@@ -79,12 +81,12 @@ test('Test Case 5: Validate Checkout Journey', async () => {
     await page.locator('#continue').click();
     const totalPrice = await page.locator('.summary_total_label').textContent();
     expect(totalPrice).toContain('$'); // Verify total price is displayed
-    expect(await page.screenshot()).toMatchSnapshot('checkout-page.png'); // Checkout Page Visual Testing
+    expect(page).toHaveScreenshot('checkout-page.png'); // Checkout Page Visual Testing
     await page.waitForTimeout(3000);
     await page.locator('#finish').click();
     const successMessage = await page.locator('.complete-header').textContent();
     expect(successMessage).toBe('Thank you for your order!'); // Verify order completion
-    expect(await page.screenshot()).toMatchSnapshot('order-completion.png'); // Order Completion Visual Testing
+    expect(page).toHaveScreenshot('order-completion.png'); // Order Completion Visual Testing
     await page.waitForTimeout(3000);
     await page.locator('#back-to-products').click();
     await page.waitForTimeout(3000);
