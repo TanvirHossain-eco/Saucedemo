@@ -4,12 +4,10 @@ Prerequisites:
 IDE (VS Code)
 Git Bash Installation
 Node Js Installation
-
 After installation of Node JS open the command prompt 
 check node & npm version
 To check Node version = node -v
 To check NPM version = npm -v
-
 Installation of Playwright
 1. Create a new folder on any Drive or location & Open in VS Code
 example of location E:\QA Automation\Playwright\
@@ -18,6 +16,7 @@ New Folder name = saucedemo
 Select Option - JavaScript
 Tests
 True
+
 ----- Complete Installation ----
 
 Suggestion of some Basic Commands
