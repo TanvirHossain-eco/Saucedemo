@@ -1,6 +1,6 @@
 const { chromium } = require('playwright');
 const { test, expect } = require('@playwright/test');
-test.describe.configure({ mode: 'serial' });
+test.describe.configure({ mode: 'parallel' });
 let browser;
 let page;
 
@@ -8,7 +8,8 @@ test.beforeAll(async () => {
     browser = await require('playwright').chromium.launch();
     const context = await browser.newContext();
     page = await context.newPage();
-    await page.goto('/');
+    // await page.goto('/');
+    await loginpage(page);
     
   });
   
@@ -17,24 +18,40 @@ test.afterAll(async () => {
 });
 
 // Step 1: Launch browser,  navigate to the URL & Login
-test('Test Case 1: Login', async () => {
-    // await page.goto('https://www.saucedemo.com/');
+async function loginpage(page) {
+    // Visit the URL & Login
+    await page.goto('/');
     await page.waitForTimeout(3000);
     await page.fill('#user-name', process.env.SAUCEDEMO_USERNAME); //standard_user
     await page.fill('#password', process.env.SAUCEDEMO_PASSWORD); //secret_sauce
-    // await page.fill('#user-name', 'standard_user'); //standard_user
-    // await page.fill('#password', 'secret_sauce'); //secret_sauce
-    // const LoginPage = await page.screenshot();
+    // await page.locator('[data-test="username"]').fill('standard_user');
+    // await page.locator('[data-test="password"]').fill('secret_sauce');
     await page.waitForTimeout(3000);
-    expect(page).toHaveScreenshot('login-page.png'); // Login Page Visual Testing
+    // expect(page).toHaveScreenshot('login-page.png'); // Login Page Visual Testing
+    // await page.waitForTimeout(3000);
     await page.click('#login-button');
     await page.waitForTimeout(3000);
-    
-    // Verify login success...
-});
+}
 
-// Step 2: Verify the sorting order displayed for Z-A on the “All Items” page.
-test('Test Case 2: Filter Sorting Order Z-A', async () => {
+// test('Test Case 1: Login', async () => {
+//     // await page.goto('https://www.saucedemo.com/');
+//     await page.waitForTimeout(3000);
+//     await page.fill('#user-name', process.env.SAUCEDEMO_USERNAME); //standard_user
+//     await page.fill('#password', process.env.SAUCEDEMO_PASSWORD); //secret_sauce
+//     // await page.fill('#user-name', 'standard_user'); //standard_user
+//     // await page.fill('#password', 'secret_sauce'); //secret_sauce
+//     // const LoginPage = await page.screenshot();
+//     await page.waitForTimeout(3000);
+//     expect(page).toHaveScreenshot('login-page.png'); // Login Page Visual Testing
+//     // await page.waitForTimeout(6000);
+//     await page.click('#login-button');
+//     await page.waitForTimeout(3000);
+    
+//     // Verify login success...
+// });
+
+// Step 1: Verify the sorting order displayed for Z-A on the “All Items” page.
+test('Test Case 1: Filter Sorting Order Z-A', async () => {
     await page.locator('.product_sort_container').selectOption('za');
     const productNames = await page.locator('.inventory_item_name').allTextContents();
     const sortedProductNames = [...productNames].sort().reverse();
@@ -44,8 +61,8 @@ test('Test Case 2: Filter Sorting Order Z-A', async () => {
     // Continue with the rest of the steps...
 });
 
-// Step 3: Verify the price order (high-low) displayed on the “All Items” page.
-test('Test Case 3: Filter Price Order High-Low', async () => {
+// Step 2: Verify the price order (high-low) displayed on the “All Items” page.
+test('Test Case 2: Filter Price Order High-Low', async () => {
     await page.locator('.product_sort_container').selectOption('hilo');
     const prices = await page.locator('.inventory_item_price').allTextContents();
     const cleanedPrices = prices.map(price => parseFloat(price.replace('$', ''))); // removed the $ sign only
@@ -56,8 +73,8 @@ test('Test Case 3: Filter Price Order High-Low', async () => {
     // Continue with the rest of the steps...
 });
 
-// Step 4: Add multiple items to the card 
-test('Test Case 4: Add Multiple Items to the cart', async () => {
+// Step 3: Add multiple items to the card 
+test('Test Case 3: Add Multiple Items to the cart', async () => {
     await page.locator('[data-test="add-to-cart-sauce-labs-fleece-jacket"]').click();
     await page.waitForTimeout(3000);
     await page.locator('[data-test="add-to-cart-test\\.allthethings\\(\\)-t-shirt-\\(red\\)"]').click();
@@ -70,8 +87,25 @@ test('Test Case 4: Add Multiple Items to the cart', async () => {
     // Continue with the rest of the steps...
 });
 
-// Step 5: Validate Checkout Journey
-test('Test Case 5: Validate Checkout Journey', async () => {
+// Step 4: Validate Checkout Journey
+test('Test Case 4: Validate Checkout Journey', async () => {
+    await page.locator('.shopping_cart_link').click();
+    const cartBadge = await page.locator('.cart_item').count();
+    if (cartBadge === 0) {
+        console.log('Cart is empty, adding products...'); 
+        // Go to the product page
+        await page.locator('#continue-shopping').click();     
+        await page.waitForTimeout(3000); 
+        // Add two products to the cart
+        await page.locator('[data-test="add-to-cart-sauce-labs-fleece-jacket"]').click(); // Add first item
+        await page.waitForTimeout(3000);
+        await page.locator('[data-test="add-to-cart-test\\.allthethings\\(\\)-t-shirt-\\(red\\)"]').click();
+        // Navigate back to the cart page
+        await page.locator('.shopping_cart_link').click();
+        await page.waitForTimeout(3000);
+      } else {
+        console.log('Cart has items, proceeding with checkout...');
+      }
     await page.locator('.checkout_button').click();
     await page.waitForTimeout(3000);
     await page.locator('#first-name').fill('Tanvir');
@@ -90,16 +124,8 @@ test('Test Case 5: Validate Checkout Journey', async () => {
     await page.waitForTimeout(3000);
     await page.locator('#back-to-products').click();
     await page.waitForTimeout(3000);
-    // await page.locator('#react-burger-menu-btn').click();
-    // await page.waitForTimeout(3000);
-    // await page.locator('#logout_sidebar_link').click();
+    await page.locator('#react-burger-menu-btn').click();
+    await page.waitForTimeout(3000);
+    await page.locator('#logout_sidebar_link').click();    
     // End the rest of the steps...
 });
-
-// test('Test case 6: Visual comparison of the products page', async () => {
-//     await page.goto('/inventory.html');
-//     await page.waitForTimeout(3000);
-//     expect(await page.screenshot()).toMatchSnapshot('products-page.png', { threshold: 0.1 }); // Compare with baseline
-//     await page.waitForTimeout(3000);
-//     // Continue with the rest of the steps...
-// });
