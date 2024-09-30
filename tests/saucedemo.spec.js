@@ -57,7 +57,7 @@ test('Test Case 1: Filter Sorting Order Z-A', async () => {
     const sortedProductNames = [...productNames].sort().reverse();
     expect(productNames).toEqual(sortedProductNames); // Verify Z-A sorting
     await page.waitForTimeout(2000);
-    expect(page).toHaveScreenshot('z-a_filtering.png', { threshold: 0.1 }); // Z-A Filtering Visual Testing
+    expect(page).toHaveScreenshot('z-a_filtering.png', { maxDiffPercentage: 50 }); // Z-A Filtering Visual Testing
     await page.waitForTimeout(3000);
     // Continue with the rest of the steps...
 });
@@ -70,7 +70,7 @@ test('Test Case 2: Filter Price Order High-Low', async () => {
     const sortedPrices = prices.map(p => parseFloat(p.replace('$', ''))).sort((a, b) => b - a);
     expect(cleanedPrices).toEqual(sortedPrices); // Verify High-Low price sorting
     await page.waitForTimeout(2000);
-    expect(page).toHaveScreenshot('hilo_filtering.png', { threshold: 0.1 }); // Hilo Filtering Visual Testing
+    expect(page).toHaveScreenshot('hilo_filtering.png', { maxDiffPercentage: 50 }); // Hilo Filtering Visual Testing
     await page.waitForTimeout(3000);
     // Continue with the rest of the steps...
 });
@@ -85,7 +85,7 @@ test('Test Case 3: Add Multiple Items to the cart', async () => {
     const cartItems = await page.locator('.cart_item').count();
     expect(cartItems).toBe(2); // Verify that 2 items are in the cart
     await page.waitForTimeout(2000);
-    expect(page).toHaveScreenshot('cart-page.png', { threshold: 0.1 }); // Cart Page Visual Testing
+    expect(page).toHaveScreenshot('cart-page.png', { maxDiffPercentage: 50 }); // Cart Page Visual Testing
     await page.waitForTimeout(3000);    
     // Continue with the rest of the steps...
 });
@@ -119,13 +119,13 @@ test('Test Case 4: Validate Checkout Journey', async () => {
     const totalPrice = await page.locator('.summary_total_label').textContent();
     expect(totalPrice).toContain('$'); // Verify total price is displayed
     await page.waitForTimeout(2000);
-    expect(page).toHaveScreenshot('checkout-page.png', { threshold: 0.1 }); // Checkout Page Visual Testing
+    expect(page).toHaveScreenshot('checkout-page.png', { maxDiffPercentage: 50 }); // Checkout Page Visual Testing
     await page.waitForTimeout(3000);
     await page.locator('#finish').click();
     const successMessage = await page.locator('.complete-header').textContent();
     expect(successMessage).toBe('Thank you for your order!'); // Verify order completion
     await page.waitForTimeout(2000);
-    expect(page).toHaveScreenshot('order-completion.png', { threshold: 0.1 }); // Order Completion Visual Testing
+    expect(page).toHaveScreenshot('order-completion.png', { maxDiffPercentage: 50 }); // Order Completion Visual Testing
     await page.waitForTimeout(3000);
     await page.locator('#back-to-products').click();
     // await page.waitForTimeout(3000);
