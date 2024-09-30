@@ -56,7 +56,8 @@ test('Test Case 1: Filter Sorting Order Z-A', async () => {
     const productNames = await page.locator('.inventory_item_name').allTextContents();
     const sortedProductNames = [...productNames].sort().reverse();
     expect(productNames).toEqual(sortedProductNames); // Verify Z-A sorting
-    expect(page).toHaveScreenshot('z-a_filtering.png'); // Z-A Filtering Visual Testing
+    await page.waitForTimeout(2000);
+    expect(page).toHaveScreenshot('z-a_filtering.png', { threshold: 0.1 }); // Z-A Filtering Visual Testing
     await page.waitForTimeout(3000);
     // Continue with the rest of the steps...
 });
