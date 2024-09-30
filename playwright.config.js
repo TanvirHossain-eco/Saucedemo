@@ -41,9 +41,9 @@ module.exports = defineConfig({
     baseURL: 'https://www.saucedemo.com',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
-    launchOptions: {
-      args: ['--use-gl=swiftshader']
-    },
+    // launchOptions: {
+    //   args: ['--use-gl=swiftshader']
+    // },
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
