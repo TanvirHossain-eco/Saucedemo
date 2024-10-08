@@ -135,6 +135,12 @@ git remote add origin <give-your-repository-url-here>
 5. Push Your Code to GitHub
 git push -u origin master
 
-Headed Automation with Visual Testing: https://app.screencast.com/Aqr9hmf2rNwQt
+Headed Automation: 
+https://app.screencast.com/C8e2NfgYbNTlc
 
-Headless Automation with Visual Testing: https://app.screencast.com/TLDlZRD64yBCm
+Headless Automation:
+https://app.screencast.com/Dt1nH9UbiDVnI
+
+<!-- Headed Automation with Visual Testing: https://app.screencast.com/Aqr9hmf2rNwQt
+
+Headless Automation with Visual Testing: https://app.screencast.com/TLDlZRD64yBCm -->
