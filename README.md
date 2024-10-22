@@ -49,7 +49,7 @@ Some changes on the configuration file
 3. Add some changes on playwright.config.js configuration file
 
 3.1 /* Maximum time one test can run for. */
-  timeout: 30 * 1000,
+  timeout: 60 * 1000,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
@@ -133,8 +133,16 @@ git commit -m "Give Your Message Here"
 git remote add origin <give-your-repository-url-here>
 
 5. Push Your Code to GitHub
-git push -u origin master
+git push -u origin visual-testing
 
+6. Check the Git Branch
+git branch
+
+7. Create a New Branch
+git branch <Branch Name>
+
+8. Switch Branch
+git checkout <Branch Name>
 
 Headed Automation with Visual Testing: https://app.screencast.com/Aqr9hmf2rNwQt
 

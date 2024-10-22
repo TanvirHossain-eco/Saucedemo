@@ -1,4 +1,4 @@
-const { chromium } = require('playwright');
+const { chromium } = require('playwright'); 
 const { test, expect } = require('@playwright/test');
 test.describe.configure({ mode: 'parallel' });
 let browser;
