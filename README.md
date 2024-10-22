@@ -41,15 +41,18 @@ npx playwright codegen
 Check playwright version
 npm playwright -v
 
+Install the @axe-core/playwright
+npm install @axe-core/playwright
+
 Check playwright command options (if required)
 npx playwright --help
 
 Some changes on the configuration file
 ======================================
-3. Add some changes on playwright.config.js configuration file
+3. Add some changes on playwright.config.js configuration file & axetesting file
 
 3.1 /* Maximum time one test can run for. */
-  timeout: 30 * 1000,
+  timeout: 60 * 1000,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
@@ -58,9 +61,8 @@ Some changes on the configuration file
     timeout: 5000
   },
 
-3.2 If you want to run the test in serial mode then need to change this on configuration file
-/* Run tests in files in parallel */
-  fullyParallel: true, -> Need to change it to false for running the test in serial mode
+3.2 Import AXE-core library for accessibility testing on axetesting.spec.js
+const AxeBuilder = require('@axe-core/playwright').default;
 
 3.3 If you want to generate multiple in build or third party report for test then need to change this on configuration file
 reporter: [["html"], ["allure-playwright"]],
@@ -80,8 +82,8 @@ use: {
 
 ----- Complete all the necessary Changes ----------------
 
-Run the test
-==============
+Run the Accessibility test
+===========================
 
 4. Create a new file under the tests director & name the file -> saucedemo.spec.js
 All automation source codes will be written on this file.
@@ -91,32 +93,28 @@ $env:SAUCEDEMO_USERNAME = "standard_user"
 $env:SAUCEDEMO_PASSWORD = "secret_sauce"
 
 6. Run the headless test by the below command on the terminal
-npx playwright test
+npx playwright test ./tests/axetesting.spec.js
 or
-npx playwright test ./tests/saucedemo.spec.js
-or
-npx playwright test ./tests/saucedemo.spec.js --project=chromium
-
+npx playwright test ./tests/axetesting.spec.js --project=chromium
 
 7. Run the headed test by the below command on the terminal
-npx playwright test --headed
+npx playwright test ./tests/axetesting.spec.js --headed
 or
-npx playwright test ./tests/saucedemo.spec.js --headed
-or
-npx playwright test ./tests/saucedemo.spec.js --project=chromium --headed
+npx playwright test ./tests/axetesting.spec.js --project=chromium --headed
 
 8. Run the test with debug mode
-npx playwright test --debug 
+npx playwright test ./tests/axetesting.spec.js --debug
 or
-npx playwright test ./tests/saucedemo.spec.js --debug
-or
-npx playwright test ./tests/saucedemo.spec.js --project=chromium --debug
+npx playwright test ./tests/axetesting.spec.js --project=chromium --debug
 
 9. Command for generating html report
 npx playwright show-report
 
 Git Deployment Steps
 =====================
+There will 3 branches 
+a. master branch, b. visual-testing branch c. axe-testing branch
+
 1. For the first time Only - Initialize a Git repository
 git init
 
@@ -133,10 +131,19 @@ git commit -m "Give Your Message Here"
 git remote add origin <give-your-repository-url-here>
 
 5. Push Your Code to GitHub
-git push -u origin master
+git push -u origin axe-testing
+
+6. Check the Git Branch
+git branch
+
+7. Create a New Branch
+git branch <Branch Name>
+
+8. Switch Branch
+git checkout <Branch Name>
 
 Headed Automation: 
-https://app.screencast.com/C8e2NfgYbNTlc
+https://app.screencast.com/sa1QH4N8okR6a
 
 Headless Automation:
-https://app.screencast.com/Dt1nH9UbiDVnI
+https://app.screencast.com/Kz60Nw2HjrdlY
