@@ -49,7 +49,7 @@ Some changes on the configuration file
 3. Add some changes on playwright.config.js configuration file
 
 3.1 /* Maximum time one test can run for. */
-  timeout: 30 * 1000,
+  timeout: 60 * 1000,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
@@ -117,6 +117,8 @@ npx playwright show-report
 
 Git Deployment Steps
 =====================
+There will 3 branches a. master branch, b. visual-testing branch c. axe-testing branch
+
 1. For the first time Only - Initialize a Git repository
 git init
 
@@ -134,6 +136,15 @@ git remote add origin <give-your-repository-url-here>
 
 5. Push Your Code to GitHub
 git push -u origin master
+
+6. Check the Git Branch
+git branch
+
+7. Create a New Branch
+git branch <Branch Name>
+
+8. Switch Branch
+git checkout <Branch Name>
 
 Headed Automation: 
 https://app.screencast.com/C8e2NfgYbNTlc

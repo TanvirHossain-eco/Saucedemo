@@ -12,5 +12,5 @@
     "@types/node": "^22.5.5",
     "allure-commandline": "^2.30.0",
     "allure-playwright": "^2.15.1"
-  }
+  } 
 }

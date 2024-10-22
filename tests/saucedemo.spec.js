@@ -49,7 +49,7 @@ async function loginpage(page) {
     
 //     // Verify login success...
 // });
-
+ 
 // Step 1: Verify the sorting order displayed for Z-A on the “All Items” page.
 test('Test Case 1: Filter Sorting Order Z-A', async () => {
     await page.locator('.product_sort_container').selectOption('za');
