@@ -35,9 +35,6 @@ npx playwright test example
 Runs the tests in debug mode.
 npx playwright test --debug
 
-Auto generate tests with codegen
-npx playwright codegen 
-
 Check playwright version
 npm playwright -v
 
@@ -115,35 +112,24 @@ Git Deployment Steps
 There will 3 branches 
 a. master branch, b. visual-testing branch c. axe-testing branch
 
-1. For the first time Only - Initialize a Git repository
-git init
+1. For the first time Only - Initialize a Git repository -> git init
 
-2. Add all the updated files
-git add .
+2. Add all the updated files -> git add .
 
-3. Check all the updated files are added or not
-git status
+3. Check all the updated files are added or not -> git status
 
-4. Commit your changes with a message
-git commit -m "Give Your Message Here"
+4. Commit your changes with a message -> git commit -m "Give Your Message Here"
 
-4. Connect Your Local Repository to the Remote Repository 
-git remote add origin <give-your-repository-url-here>
+4. Connect Your Local Repository to the Remote Repository for the first time -> git remote add origin <give-your-repository-url-here>
 
-5. Push Your Code to GitHub
-git push -u origin axe-testing
+5. Push Your Code to GitHub -> git push -u origin axe-testing
 
-6. Check the Git Branch
-git branch
+6. Check the Git Branch -> git branch
 
-7. Create a New Branch
-git branch <Branch Name>
+7. Create a New Branch -> git branch <Branch Name>
 
-8. Switch Branch
-git checkout <Branch Name>
+8. Switch Branch -> git checkout <Branch Name>
 
-Headed Automation: 
-https://app.screencast.com/sa1QH4N8okR6a
+Headed Automation: https://app.screencast.com/IOhdI94pS1Dgj
 
-Headless Automation:
-https://app.screencast.com/Kz60Nw2HjrdlY
+Headless Automation: https://app.screencast.com/VzHI670rQ4rw0
