@@ -130,6 +130,8 @@ a. master branch, b. visual-testing branch c. axe-testing branch
 
 8. Switch Branch -> git checkout <Branch Name>
 
-Headed Automation: https://app.screencast.com/IOhdI94pS1Dgj
+Headed Automation: 
+https://www.loom.com/share/49c47dad18ca4b6289cd3c7613f10cae?sid=d9fc10bc-0a22-437c-a339-420963dfff8d
 
-Headless Automation: https://app.screencast.com/VzHI670rQ4rw0
+Headless Automation:
+https://www.loom.com/share/7b4b9f88148e4d4fb0935697cb2c5df0?sid=1350615f-d087-485b-840e-38623feea858
