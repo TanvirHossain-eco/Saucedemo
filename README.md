@@ -132,6 +132,8 @@ Git Deployment Steps
 
 8. Switch Branch -> git checkout <Branch Name>
 
-Headed Mode Automation with Visual Testing: https://app.screencast.com/gIneL5aZQ0Qu2
+Headed Mode Automation with Visual Testing: 
+https://www.loom.com/share/68df892c7ce142828b42a9b7cdbe70e3?sid=f6b5ee22-35f4-43c0-987e-56202801596c
 
-Headless Mode Automation with Visual Testing: https://app.screencast.com/KANUzjKyqXuyB
+Headless Mode Automation with Visual Testing: 
+https://www.loom.com/share/32ac9ed7900a43bcb96287a5c3ed4ca1?sid=51e4621f-1400-4285-adbf-f01c3c2368db
