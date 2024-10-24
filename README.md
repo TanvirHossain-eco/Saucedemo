@@ -134,8 +134,8 @@ There will 3 branches a. master branch, b. visual-testing branch c. axe-testing 
 8. Switch Branch -> git checkout <Branch Name>
 
 Headed Mode Automation: 
-https://app.screencast.com/2cPRYuKGmH7Yw
+https://www.loom.com/share/cfa73bd127524c1f963ffc81ff78ba6c?sid=1c385c43-80e3-4a2c-8ace-99157a31ecbf
 
 Headless Mode Automation:
-https://app.screencast.com/RTrB8BkiKkWWt 
+https://www.loom.com/share/5f117c3b79a1437eaf6115d811409cd6?sid=9c8ced05-1173-489f-b256-3f890e8872e3
 
